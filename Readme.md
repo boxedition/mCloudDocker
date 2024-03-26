@@ -4,6 +4,8 @@
 
 https://github.com/boxedition/devSmart
 
-##### Nota:
+## Comandos
 
-> A contrução das imagens encontra-se dentro do https://github.com/boxedition/devSmart
+```sh
+docker compose up -d
+```
