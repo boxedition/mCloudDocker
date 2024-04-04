@@ -9,8 +9,9 @@ services:
       - database
     networks:
       - db
-    environment:
-      DB_HOST: "database"
+    volumes:
+      - api_data:/app
+    command: sh -c "sed -i 's/DB_HOST=.*/DB_HOST=database/' .env && tail -f /dev/null"
 
   database:
     image: boxedition/cloud-db
@@ -25,4 +26,5 @@ networks:
   db:
 
 volumes:
+  api_data:
   database_data:
