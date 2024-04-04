@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  api:
+    image: boxedition/cloud-api
+    ports:
+      - "80:8080"
+    depends_on:
+      - database
+    networks:
+      - db
+    environment:
+      DB_HOST: "database"
+
+  database:
+    image: boxedition/cloud-db
+    ports:
+      - "3306:3306"
+    networks:
+      - db
+    volumes:
+      - database_data:/var/lib/mysql
+
+networks:
+  db:
+
+volumes:
+  database_data:
