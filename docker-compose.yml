@@ -9,6 +9,7 @@ services:
       - database
     networks:
       - db
+      - tunnel
     volumes:
       - api_data:/app
     command: sh -c "sed -i 's/DB_HOST=.*/DB_HOST=database/' .env && tail -f /dev/null"
@@ -22,8 +23,19 @@ services:
     volumes:
       - database_data:/var/lib/mysql
 
+  tunnel:
+    container_name: cloudflared-tunnel
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    networks:
+      - tunnel
+    environment:
+      TUNNEL_TOKEN: "${TUNNEL_TOKEN}"
+
 networks:
   db:
+  tunnel:
 
 volumes:
   api_data:
