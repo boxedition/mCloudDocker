@@ -33,6 +33,9 @@ docker compose up -d
 
 ##### Nota:
 
+> Link para aceder à instância do Google Cloud Plataform:
+> https://cloud.boxdev.site/
+>
 > A contrução das imagens encontra-se dentro do https://github.com/boxedition/devSmart
 >
 > > Dockerfile.api: Container com o serviço php
