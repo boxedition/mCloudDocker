@@ -2,9 +2,9 @@ version: "3.8"
 
 services:
   api:
-    image: boxedition/cloud-api
+    image: boxedition/cloud-api:latest
     ports:
-      - "80:8080"
+      - "8080:8080"
     depends_on:
       - database
     networks:
@@ -12,10 +12,10 @@ services:
       - tunnel
     volumes:
       - api_data:/app
-    command: sh -c "sed -i 's/DB_HOST=.*/DB_HOST=database/' .env && tail -f /dev/null"
+    command: sh -c "sed -i 's/DB_HOST=.*/DB_HOST=database/' .env && php artisan serve --host=0.0.0.0 --port=8080"
 
   database:
-    image: boxedition/cloud-db
+    image: boxedition/cloud-db:latest
     ports:
       - "3306:3306"
     networks:
@@ -36,7 +36,6 @@ services:
 networks:
   db:
   tunnel:
-    driver: bridge
 
 volumes:
   api_data:
