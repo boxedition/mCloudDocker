@@ -1,25 +1,42 @@
 terraform {
   required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
+    google = {
+      source  = "hashicorp/google"
+      version = "4.51.0"
     }
   }
 }
 
-provider "docker" {}
-
-resource "docker_image" "nginx" {
-  name         = "nginx"
-  keep_locally = false
+provider "google" {
+  project = "cloud-415519"
 }
 
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.image_id
-  name  = "tutorial"
+resource "google_compute_network" "vpc_network" {
+  name = "terraform-network"
+  
+}
+resource "google_compute_firewall" "ssh-https-rule" {
+  name = "rule-ssh-http"
+  network = google_compute_network.vpc_network.name
+  allow {
+    protocol = "tcp"
+    ports = ["22","443"]
+  }
+  source_ranges = ["0.0.0.0/0"]
+}
 
-  ports {
-    internal = 80
-    external = 8000
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "e2-micro"
+  zone         = "europe-west9-a"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_network.name
   }
 }
