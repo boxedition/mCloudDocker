@@ -20,8 +20,20 @@ services:
       - "5800:5800"
     volumes:
       - "filezilla:/config:rw"
+    restart: always
+    networks:
+      - tunnel
     depends_on:
       - ftp-server
+  tunnel:
+    container_name: cloudflared-tunnel
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    networks:
+      - tunnel
+    environment:
+      TUNNEL_TOKEN: "${TUNNEL_TOKEN}"
 
 volumes:
   ftp:
