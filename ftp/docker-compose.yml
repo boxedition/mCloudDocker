@@ -35,6 +35,9 @@ services:
     environment:
       TUNNEL_TOKEN: "${TUNNEL_TOKEN}"
 
+networks:
+  tunnel:
+
 volumes:
   ftp:
   filezilla:
