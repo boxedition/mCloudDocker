@@ -10,9 +10,9 @@ services:
     volumes:
       - ftp:/home/vsftpd
     environment:
-      - FTP_USER=admin
-      - FTP_PASS=secret
-      - PASV_ADDRESS=127.0.0.1
+      FTP_USER: "${FTP_USER}"
+      FTP_PASS: "${FTP_PASSWORD}"
+      PASV_ADDRESS: "127.0.0.1"
 
   filezilla:
     image: jlesage/filezilla
