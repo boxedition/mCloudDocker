@@ -35,8 +35,10 @@ resource "google_compute_instance" "vm_instance" {
       image = "debian-cloud/debian-11"
     }
   }
-
   network_interface {
-    network = google_compute_network.vpc_network.name
-  } 
+    network = "default"
+    access_config {} 
+  }
+  
+  metadata_startup_script = "sudo apt-get update;"
 }
