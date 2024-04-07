@@ -4,6 +4,13 @@
 
 https://github.com/boxedition/devSmart
 
+## Instalação dentro de Azure
+
+```sh
+git clone https://github.com/boxedition/mCloudDocker
+cd mCloudDocker/
+```
+
 ## Instalação dentro de GCP
 
 Clonar projeto do repositório e aceda à pasta
@@ -41,7 +48,7 @@ sudo docker compose exec api sh
 php artisan migrate:fresh --seed
 ```
 
-##### Nota:
+#### Notas:
 
 > Link para aceder à instância do Google Cloud Plataform:
 > https://cloud.boxdev.site/
