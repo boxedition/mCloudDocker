@@ -31,6 +31,16 @@ Criar a Stack de containers
 docker compose up -d
 ```
 
+Seed database (opcional)
+
+```sh
+sudo docker compose exec api sh
+```
+
+```sh
+php artisan migrate:fresh --seed
+```
+
 ##### Nota:
 
 > Link para aceder à instância do Google Cloud Plataform:
