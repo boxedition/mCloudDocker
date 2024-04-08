@@ -41,7 +41,13 @@ Criar um .env
 cp .env.example .env
 ```
 
+##
+
 Modificar o valor do TUNNEL_TOKEN com o valor do token fornecido pela Cloudflare
+
+Modificar o valor do AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION, AWS_BUCKET com o valor do token fornecido pela AWS S3
+
+Modificar o valor do FILESYSTEM_DISK para s3.
 
 ```sh
 nano .env
@@ -65,6 +71,10 @@ php artisan migrate:fresh --seed
 
 #### Notas:
 
+> Terraform utilizado para a criação de uma Compute Engine (VM)
+> A conclusão do processo de instalação deve ser veito dentro da VM
+> https://console.cloud.google.com/compute/instances?project=cloud-415519
+>
 > Link para aceder à instância do Google Cloud Plataform:
 > https://cloud.boxdev.site/
 >
