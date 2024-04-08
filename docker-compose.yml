@@ -12,7 +12,7 @@ services:
       - tunnel
     volumes:
       - api_data:/app
-    command: sh -c "sed -i 's/DB_HOST=.*/DB_HOST=database/' .env && php artisan serve --host=0.0.0.0 --port=8080"
+    command: sh -c "sed -i 's/DB_HOST=.*/DB_HOST=database/' .env &&sed -i 's/AWS_ACCESS_KEY_ID=.*/AWS_ACCESS_KEY_ID=database/' .env && php artisan serve --host=0.0.0.0 --port=8080"
 
   database:
     image: boxedition/cloud-db:latest
